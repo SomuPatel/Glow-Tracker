@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Somu Glow Pro</title>
+<link rel="manifest" href="manifest.json">
+<style>
+body {
+  font-family: Arial;
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  transition: 0.3s;
+}
+.light {
+  background: #f4f4f4;
+  color: black;
+}
+.box {
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 15px auto;
+  max-width: 400px;
+}
+.light .box {
+  background: white;
+}
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+.primary { background: limegreen; color: white; }
+.toggle { background: orange; color: white; }
+.progress-bar {
+  height: 20px;
+  background: gray;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.progress {
+  height: 100%;
+  background: limegreen;
+  width: 0%;
+}
+</style>
+</head>
+<body>
+
+<h1>🌟 30 Day Glow Challenge PRO</h1>
+<button class="toggle" onclick="toggleMode()">🌗 Toggle Mode</button>
+
+<div class="box">
+  <div id="date"></div><br>
+
+  <label><input type="checkbox" class="task"> Morning Routine</label><br><br>
+  <label><input type="checkbox" class="task"> Healthy Diet</label><br><br>
+  <label><input type="checkbox" class="task"> 2.5L Water</label><br><br>
+  <label><input type="checkbox" class="task"> Exercise</label><br><br>
+  <label><input type="checkbox" class="task"> 7-8 Hr Sleep</label><br><br>
+
+  <button class="primary" onclick="saveData()">Save Today</button>
+  <h3 id="result"></h3>
+</div>
+
+<div class="box">
+  <h3>🔥 Streak: <span id="streak">0</span> Days</h3>
+  <h3>📊 Monthly Progress</h3>
+  <div class="progress-bar">
+    <div class="progress" id="progressBar"></div>
+  </div>
+</div>
+
+<script>
+let today = new Date().toISOString().split("T")[0];
+document.getElementById("date").innerText = "Date: " + today;
+
+function saveData() {
+  let tasks = document.querySelectorAll(".task");
+  let completed = 0;
+  tasks.forEach(t => { if(t.checked) completed++; });
+
+  let progress = (completed / tasks.length) * 100;
+
+  localStorage.setItem(today, progress);
+
+  document.getElementById("result").innerText =
+    "🔥 Today Progress: " + progress + "%";
+
+  updateStreak();
+  updateMonthly();
+}
+
+function updateStreak() {
+  let streak = 0;
+  for(let i=0; i<30; i++){
+    let d = new Date();
+    d.setDate(d.getDate() - i);
+    let key = d.toISOString().split("T")[0];
+    if(localStorage.getItem(key) && localStorage.getItem(key) >= 60){
+      streak++;
+    } else {
+      break;
+    }
+  }
+  document.getElementById("streak").innerText = streak;
+}
+
+function updateMonthly() {
+  let total = 0;
+  let count = 0;
+  for(let i=0; i<30; i++){
+    let d = new Date();
+    d.setDate(d.getDate() - i);
+    let key = d.toISOString().split("T")[0];
+    if(localStorage.getItem(key)){
+      total += parseInt(localStorage.getItem(key));
+      count++;
+    }
+  }
+  let avg = count ? total / count : 0;
+  document.getElementById("progressBar").style.width = avg + "%";
+}
+
+function toggleMode() {
+  document.body.classList.toggle("light");
+}
+
+updateStreak();
+updateMonthly();
+</script>
+
+</body>
+</html>
