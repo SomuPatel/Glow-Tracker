@@ -1,139 +1,238 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Somu Glow Pro</title>
-<link rel="manifest" href="manifest.json">
+<title>Velix Associates</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
 <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
 body {
-  font-family: Arial;
-  background: #111;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  transition: 0.3s;
+    background: #0b1c2c;
+    color: white;
 }
-.light {
-  background: #f4f4f4;
-  color: black;
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
 }
-.box {
-  background: #1e1e1e;
-  padding: 20px;
-  border-radius: 15px;
-  margin: 15px auto;
-  max-width: 400px;
+
+nav h2 {
+    color: #d4af37;
 }
-.light .box {
-  background: white;
+
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: white;
 }
-button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 10px;
-  margin: 5px;
-  cursor: pointer;
+
+nav a:hover {
+    color: #d4af37;
 }
-.primary { background: limegreen; color: white; }
-.toggle { background: orange; color: white; }
-.progress-bar {
-  height: 20px;
-  background: gray;
-  border-radius: 10px;
-  overflow: hidden;
+
+/* Hero */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)),
+    url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f') no-repeat center/cover;
 }
-.progress {
-  height: 100%;
-  background: limegreen;
-  width: 0%;
+
+.hero h1 {
+    font-size: 50px;
+    color: #d4af37;
+}
+
+.hero p {
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+.btn {
+    padding: 12px 25px;
+    background: #d4af37;
+    color: black;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: white;
+}
+
+/* Section */
+section {
+    padding: 80px 50px;
+}
+
+/* About */
+.about {
+    display: flex;
+    gap: 40px;
+}
+
+.about div {
+    flex: 1;
+}
+
+/* Services */
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 20px;
+}
+
+.card {
+    padding: 20px;
+    border: 1px solid #d4af37;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card:hover {
+    background: #d4af37;
+    color: black;
+    transform: translateY(-5px);
+}
+
+/* Why Choose */
+.why {
+    display: flex;
+    gap: 20px;
+}
+
+.why .card {
+    flex: 1;
+}
+
+/* Contact */
+.contact {
+    text-align: center;
+}
+
+.contact input, .contact textarea {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: black;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .about, .why {
+        flex-direction: column;
+    }
 }
 </style>
+
 </head>
 <body>
 
-<h1>🌟 30 Day Glow Challenge PRO</h1>
-<button class="toggle" onclick="toggleMode()">🌗 Toggle Mode</button>
+<!-- Navbar -->
+<nav>
+    <h2>VELIX</h2>
+    <div>
+        <a href="#">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
 
-<div class="box">
-  <div id="date"></div><br>
+<!-- Hero -->
+<section class="hero">
+    <h1>Expert Legal Solutions</h1>
+    <p>Strategic. Reliable. Result-Oriented.</p>
+    <button class="btn">Get Consultation</button>
+</section>
 
-  <label><input type="checkbox" class="task"> Morning Routine</label><br><br>
-  <label><input type="checkbox" class="task"> Healthy Diet</label><br><br>
-  <label><input type="checkbox" class="task"> 2.5L Water</label><br><br>
-  <label><input type="checkbox" class="task"> Exercise</label><br><br>
-  <label><input type="checkbox" class="task"> 7-8 Hr Sleep</label><br><br>
+<!-- About -->
+<section id="about" class="about">
+    <div>
+        <h2 style="color:#d4af37;">Who We Are</h2>
+        <p>
+        Velix Associates is a professionally driven law firm delivering strategic and reliable legal solutions.
+        </p>
+    </div>
+    <div>
+        <p>
+        We represent individuals, businesses, and institutions with precision, speed, and integrity.
+        </p>
+    </div>
+</section>
 
-  <button class="primary" onclick="saveData()">Save Today</button>
-  <h3 id="result"></h3>
-</div>
+<!-- Services -->
+<section id="services">
+    <h2 style="text-align:center; color:#d4af37;">Our Services</h2>
+    <div class="services">
+        <div class="card">Banking & Finance</div>
+        <div class="card">Corporate Law</div>
+        <div class="card">Criminal Law</div>
+        <div class="card">Cyber Law</div>
+        <div class="card">Property Law</div>
+        <div class="card">Family Law</div>
+    </div>
+</section>
 
-<div class="box">
-  <h3>🔥 Streak: <span id="streak">0</span> Days</h3>
-  <h3>📊 Monthly Progress</h3>
-  <div class="progress-bar">
-    <div class="progress" id="progressBar"></div>
-  </div>
-</div>
+<!-- Why Choose -->
+<section>
+    <h2 style="text-align:center; color:#d4af37;">Why Choose Us</h2>
+    <div class="why">
+        <div class="card">Client Focused</div>
+        <div class="card">Expert Team</div>
+        <div class="card">Fast Service</div>
+        <div class="card">Result Oriented</div>
+    </div>
+</section>
 
-<script>
-let today = new Date().toISOString().split("T")[0];
-document.getElementById("date").innerText = "Date: " + today;
+<!-- Contact -->
+<section id="contact" class="contact">
+    <h2 style="color:#d4af37;">Contact Us</h2>
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <textarea rows="4" placeholder="Your Message"></textarea><br>
+    <button class="btn">Send Message</button>
 
-function saveData() {
-  let tasks = document.querySelectorAll(".task");
-  let completed = 0;
-  tasks.forEach(t => { if(t.checked) completed++; });
+    <p style="margin-top:20px;">
+        📞 8303072879 <br>
+        📧 velixassociates@gmail.com
+    </p>
+</section>
 
-  let progress = (completed / tasks.length) * 100;
-
-  localStorage.setItem(today, progress);
-
-  document.getElementById("result").innerText =
-    "🔥 Today Progress: " + progress + "%";
-
-  updateStreak();
-  updateMonthly();
-}
-
-function updateStreak() {
-  let streak = 0;
-  for(let i=0; i<30; i++){
-    let d = new Date();
-    d.setDate(d.getDate() - i);
-    let key = d.toISOString().split("T")[0];
-    if(localStorage.getItem(key) && localStorage.getItem(key) >= 60){
-      streak++;
-    } else {
-      break;
-    }
-  }
-  document.getElementById("streak").innerText = streak;
-}
-
-function updateMonthly() {
-  let total = 0;
-  let count = 0;
-  for(let i=0; i<30; i++){
-    let d = new Date();
-    d.setDate(d.getDate() - i);
-    let key = d.toISOString().split("T")[0];
-    if(localStorage.getItem(key)){
-      total += parseInt(localStorage.getItem(key));
-      count++;
-    }
-  }
-  let avg = count ? total / count : 0;
-  document.getElementById("progressBar").style.width = avg + "%";
-}
-
-function toggleMode() {
-  document.body.classList.toggle("light");
-}
-
-updateStreak();
-updateMonthly();
-</script>
+<!-- Footer -->
+<footer>
+    <p>© 2026 Velix Associates | Precision • Speed • Integrity</p>
+</footer>
 
 </body>
 </html>
