@@ -1,15 +1,31 @@
 {
-  "name": "Somu Glow Pro",
-  "short_name": "GlowPro",
-  "start_url": "index.html",
-  "display": "standalone",
-  "background_color": "#111",
-  "theme_color": "#111",
-  "icons": [
-    {
-      "src": "https://cdn-icons-png.flaticon.com/512/869/869869.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    }
-  ]
+  "name": "velix-associates",
+  "version": "1.0.0",
+  "description": "Premium animated legal services website for Velix Associates",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=3000",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "law-firm",
+    "velix",
+    "legal",
+    "advocate",
+    "website",
+    "animation",
+    "frontend"
+  ],
+  "author": "Somu",
+  "license": "MIT",
+  "dependencies": {
+    "aos": "^2.3.4",
+    "gsap": "^3.12.5"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0",
+    "live-server": "^1.2.2"
+  }
 }
